@@ -1,5 +1,3 @@
-const { default: Choices } = require("inquirer/lib/objects/choices");
-
 const questions = [
     {
         type: 'checkbox',
@@ -70,3 +68,5 @@ const questions = [
         choices: ['The MIT Licence', 'The Apache Licence', 'The GPL Licence']
     },
 ];
+
+module.exports = {questions};
