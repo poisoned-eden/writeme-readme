@@ -1,12 +1,15 @@
 // TODO: Include packages needed for this application
 const markdownify = require("./utils/generateMarkdown.js");
-const questions = require('./utils/questions.js');
+const questionnaire = require('./utils/questions.js');
+const inquirer = require('inquirer');
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questionnaire.questions);
+}
 
 // Function call to initialize app
 init();
