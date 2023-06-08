@@ -87,11 +87,11 @@ const badgesQs = [
     }
 ] 
 
-const featureQ = [
+const featuresQ = [
     {
         type: 'input',
         name: 'feature',
-        message: 'Please describe one feature. (You will have the chance to add more)',
+        message: 'Please describe the features of your project.',
     }
 ] 
 
@@ -127,4 +127,4 @@ const testsQs = [
 
 
 
-module.exports = {starterQs, shortDescQs, longDescQs, requiredQs, badgesQs, featureQ, anotherFeature, constributeQs, testsQs};
+module.exports = {starterQs, shortDescQs, longDescQs, requiredQs, badgesQs, featuresQ, anotherFeature, constributeQs, testsQs};
