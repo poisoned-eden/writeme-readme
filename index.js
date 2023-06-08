@@ -15,40 +15,47 @@ var storeResponses = {};
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {
-    inquirer
-        .prompt(questionnaire.starterQs)
-        .then((starterAs) => {
-            print(starterAs);
-            askForDescription(starterAs);
-            storeResponses.starterAs = starterAs;
-        });
+async function init() {
+    const starterAs = await inquirer.prompt(questionnaire.starterQs);
+    
+    var descAs = {};
+    if(starterAs.descriptionType == 'short') {
+        print('short');
+        descAs = await inquirer.prompt(questionnaire.shortDescQs);
+    } else {
+        print('long');
+        descAs = await inquirer.prompt(questionnaire.longDescQs);
+    };
+    
+    const requiredAs = await inquirer.prompt(questionnaire.requiredQs);
+
+    var badgesAs = {};
+    if(starterAs.optionalSections.includes("Badges")) {
+        print("Badges");
+        badgesAs = await inquirer.prompt(questionnaire.badgesQs);
+    };
+    
+    var featuresAs = {};
+    if(starterAs.optionalSections.includes("Features")) {
+        print("Features");
+        featuresAs = await inquirer.prompt(questionnaire.featuresQ);
+    };
+
+    var contributeAs = {};
+    if(starterAs.optionalSections.includes("How to Contribute")) {
+        print("Contributions");
+        contributeAs = await inquirer.prompt(questionnaire.constributeQs);
+    };
+    
+    var testsAs = {};
+    if(starterAs.optionalSections.includes("Tests")) {
+        print("Tests");
+        testsAs = await inquirer.prompt(questionnaire.testsQs);
+    };
+
 }
 // Function call to initialize app
 init();
-
-function askForDescription(starterAs) {
-    if(starterAs.descriptionType == 'short'){
-        print('short');
-        inquirer
-            .prompt(questionnaire.shortDescQs)
-            .then((shortDescAs) => {
-                print(shortDescAs);
-                storeResponses.shortDescAs = shortDescAs;
-            });
-    } else {
-        print('long');
-        inquirer
-            .prompt(questionnaire.longDescQs)
-            .then((longDescAs) => {
-                print(longDescAs);
-                storeResponses.longDescAs = longDescAs;
-                print(storeResponses);
-            });
-    }
-
-    // print(storeResponses);
-}
 
 // set it to ask if like to make new readme or edit what already saved
 // find a way of saving answers as go along - use editor type inquirer question?
