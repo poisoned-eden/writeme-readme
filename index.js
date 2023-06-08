@@ -9,6 +9,8 @@ function print(something) {
     console.log("_______");
 }
 
+var storeResponses = {};
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
@@ -54,3 +56,6 @@ async function init() {
 }
 // Function call to initialize app
 init();
+
+// set it to ask if like to make new readme or edit what already saved
+// find a way of saving answers as go along - use editor type inquirer question?
