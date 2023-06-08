@@ -8,11 +8,11 @@ function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questionnaire.questions);
+    inquirer.prompt(questionnaire.starterQs);
 }
 
 // Function call to initialize app
 init();
 
 // set it to ask if like to make new readme or edit what already saved
-// find a way of saving answers as go along - use editor type?
+// find a way of saving answers as go along - use editor type inquirer question?
