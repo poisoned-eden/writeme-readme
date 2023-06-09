@@ -14,10 +14,14 @@ function renderLicenseSection(license) {}
 function renderTableOfContents(){};
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
-
-`;
+function generateMarkdown(starterAs, descAs, requiredAs, badgesAs, featuresAs, contributeAs, testsAs) {
+  console.log(starterAs);
+  console.log(descAs);
+  console.log(requiredAs);
+  console.log(badgesAs);
+  console.log(featuresAs);
+  console.log(contributeAs);
+  console.log(testsAs);
 }
 
 module.exports = generateMarkdown;

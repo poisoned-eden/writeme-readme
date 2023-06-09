@@ -51,6 +51,8 @@ async function init() {
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
 
+    markdownify(starterAs, descAs, requiredAs, badgesAs, featuresAs, contributeAs, testsAs);
+
 }
 // Function call to initialize app
 init();
