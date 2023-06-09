@@ -14,17 +14,7 @@ function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 async function init() {
-    const starterAs = await inquirer.prompt(questionnaire.starterQs);
-    
-    var descAs = {};
-    if(starterAs.descriptionType == 'short') {
-        print('short');
-        descAs = await inquirer.prompt(questionnaire.shortDescQs);
-    } else {
-        print('long');
-        descAs = await inquirer.prompt(questionnaire.longDescQs);
-    };
-    
+       
     const requiredAs = await inquirer.prompt(questionnaire.requiredQs);
 
     var badgesAs = {};
@@ -51,7 +41,7 @@ async function init() {
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
 
-    markdownify(starterAs, descAs, requiredAs, badgesAs, featuresAs, contributeAs, testsAs);
+    markdownify(requiredAs, badgesAs, featuresAs, contributeAs, testsAs);
 
 }
 // Function call to initialize app
