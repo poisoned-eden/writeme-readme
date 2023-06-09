@@ -1,4 +1,4 @@
-const requiredQs = [
+const starterQs = [
     {
         type: 'input',
         name: 'title',
@@ -33,8 +33,8 @@ const requiredQs = [
     {
         type: 'checkbox',
         name: 'optionalSections',
-        message: 'Which optional sections would you like to include in the ReadMe?',
-        choices: ["Badges", "Features", "How to Contribute", "Tests"],
+        message: 'Which options would you like to include in the ReadMe?',
+        choices: ["Table of Contents","Badges", "Features", "How to Contribute", "Tests"],
     }
 ]
 
@@ -50,28 +50,26 @@ const badgesQs = [
 const featuresQ = [
     {
         type: 'input',
-        name: 'feature',
+        name: 'features',
         message: 'Please describe the features of your project.',
     }
 ] 
 
-const constributeQs = [
+const contributeQs = [
     {
-        type: 'checkbox',
-        name: 'optionalSections',
-        message: 'Which optional sections would you like to include in the ReadMe?',
-        choices: ["Badges", "Features", "How to Contribute", "Tests"],
+        type: 'input',
+        name: 'contribute',
+        message: 'How can other developers contribute to your project?  Include guidelines.'
     }
 ] 
 const testsQs = [
     {
-        type: 'checkbox',
-        name: 'optionalSections',
-        message: 'Which optional sections would you like to include in the ReadMe?',
-        choices: ["Badges", "Features", "How to Contribute", "Tests"],
+        type: 'input',
+        name: 'tests',
+        message: 'Tests: Provide examples on how to run test for your application',
     }
 ] 
 
 
 
-module.exports = {requiredQs, badgesQs, featuresQ, constributeQs, testsQs};
+module.exports = {starterQs, badgesQs, featuresQ, contributeQs, testsQs};
