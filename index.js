@@ -3,6 +3,7 @@ const markdownify = require("./utils/generateMarkdown.js");
 const questionnaire = require('./utils/questions.js');
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { start } = require("repl");
 
 function print(something) {
     console.log("-------");
@@ -15,7 +16,7 @@ function writeToFile(title, markdown) {
     fs.mkdir(`./output/${title}`, { recursive: true }, (err) => {
         if (err) throw err}
     );
-    fs.writeFile(`./output/${title}/README.md`, 'something something soommmmmeeethhhiiinnnggggggg', (error, data) =>
+    fs.writeFile(`./output/${title}/README.md`, markdown, (error, data) =>
     error ? console.error(error) : console.log(data));
 };
 
@@ -48,9 +49,10 @@ async function init() {
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
 
-    markdownify(starterAs, badgesAs, featuresAs, contributeAs, testsAs);
+    const markdown = markdownify(starterAs, badgesAs, featuresAs, contributeAs, testsAs);
+
+    writeToFile(starterAs.title, markdown);
 
 }
 // Function call to initialize app
-//init();
-writeToFile('test');
+init();
