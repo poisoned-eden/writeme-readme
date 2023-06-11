@@ -11,8 +11,11 @@ function print(something) {
 }
 
 // TODO: Create a function to write README file
-function writeToFile() {
-    fs.writeFile('README.md', 'something something soommmmmeeethhhiiinnnggggggg', (error, data) =>
+function writeToFile(title, markdown) {
+    fs.mkdir(`./output/${title}`, { recursive: true }, (err) => {
+        if (err) throw err}
+    );
+    fs.writeFile(`./output/${title}/README.md`, 'something something soommmmmeeethhhiiinnnggggggg', (error, data) =>
     error ? console.error(error) : console.log(data));
 };
 
@@ -50,4 +53,4 @@ async function init() {
 }
 // Function call to initialize app
 //init();
-writeToFile();
+writeToFile('test');
