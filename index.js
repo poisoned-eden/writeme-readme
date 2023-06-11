@@ -2,6 +2,7 @@
 const markdownify = require("./utils/generateMarkdown.js");
 const questionnaire = require('./utils/questions.js');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 function print(something) {
     console.log("-------");
@@ -9,25 +10,13 @@ function print(something) {
     console.log("_______");
 }
 
-var storeResponses = {};
-
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 async function init() {
+       
     const starterAs = await inquirer.prompt(questionnaire.starterQs);
-    
-    var descAs = {};
-    if(starterAs.descriptionType == 'short') {
-        print('short');
-        descAs = await inquirer.prompt(questionnaire.shortDescQs);
-    } else {
-        print('long');
-        descAs = await inquirer.prompt(questionnaire.longDescQs);
-    };
-    
-    const requiredAs = await inquirer.prompt(questionnaire.requiredQs);
 
     var badgesAs = {};
     if(starterAs.optionalSections.includes("Badges")) {
@@ -44,7 +33,7 @@ async function init() {
     var contributeAs = {};
     if(starterAs.optionalSections.includes("How to Contribute")) {
         print("Contributions");
-        contributeAs = await inquirer.prompt(questionnaire.constributeQs);
+        contributeAs = await inquirer.prompt(questionnaire.contributeQs);
     };
     
     var testsAs = {};
@@ -53,9 +42,8 @@ async function init() {
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
 
+    markdownify(starterAs, badgesAs, featuresAs, contributeAs, testsAs);
+
 }
 // Function call to initialize app
 init();
-
-// set it to ask if like to make new readme or edit what already saved
-// find a way of saving answers as go along - use editor type inquirer question?
