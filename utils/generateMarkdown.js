@@ -86,22 +86,15 @@ ${requiredAs.description}`
   if(requiredAs.optionalSections.includes("Table of Contents")) {
     markdown += renderTableOfContents();
   };  
-  
-  var licence = renderLicenseSection(requiredAs.licence);
 
   // add other required information
-  markdown += `\n
-\n
-## Installation\n
-\n
-${requiredAs.installation}\n
-\n
-## Usage\n
-\n
-${requiredAs.usage}${licence}\n
-\n
-## Credits\n
-\n
+  markdown += `\n\n
+## Installation\n\n
+${requiredAs.installation}\n\n
+## Usage\n\n
+${requiredAs.usage}
+${renderLicenseSection(requiredAs.licence)}\n\n
+## Credits\n\n
 ${requiredAs.credits}`;
 
   // add optional fields to markdown
