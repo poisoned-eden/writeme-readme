@@ -2,6 +2,7 @@
 const markdownify = require("./utils/generateMarkdown.js");
 const questionnaire = require('./utils/questions.js');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 function print(something) {
     console.log("-------");

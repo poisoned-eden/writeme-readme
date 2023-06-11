@@ -23,6 +23,13 @@ function renderBadges(badgesAs) {};
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(requiredAs, badgesAs, featuresAs, contributeAs, testsAs) {
+
+  console.log(requiredAs);
+  console.log(badgesAs);
+  console.log(featuresAs);
+  console.log(contributeAs);
+  console.log(testsAs);
+
   var markdown = "";
 
   // add title and description to markdown
@@ -30,8 +37,7 @@ function generateMarkdown(requiredAs, badgesAs, featuresAs, contributeAs, testsA
 \n
 ## Description\n
 \n
-${requiredAs.description}\n
-\n`
+${requiredAs.description}`
 
   // add table of contents  
   if(requiredAs.optionalSections.includes("Table of Contents")) {
@@ -39,7 +45,9 @@ ${requiredAs.description}\n
   };  
   
   // add other required information
-  markdown += `## Installation\n
+  markdown += `\n
+\n
+## Installation\n
 \n
 ${requiredAs.installation}\n
 \n
@@ -53,27 +61,39 @@ ${requiredAs.credits}\n
 \n
 ## Licence\n
 \n
-${requiredAs.licence}\n
-\n`;
+${requiredAs.licence}`;
 
   // add optional fields to markdown
   if(badgesAs.badges.length>0) {
-    markdown += badgesAs.badges;
+    markdown += badgesAs.badges + "\n\n";
   };
 
-  if(featuresAs.length>0) {
-    markdown += featuresAs.features; 
+  if(featuresAs.features.length>0) {
+    markdown += `\n
+\n
+## Features\n
+\n
+${featuresAs.features}`; 
   };
 
-  if(contributeAs.length>0) {
-    markdown += contributeAs.contribute;
+  if(contributeAs.contribute.length>0) {
+    markdown += `\n
+\n
+## Contributions\n
+\n
+${contributeAs.contribute}`;
   };
 
-  if(testsAs.length>0) {
-    markdown += testsAs.tests;
+  if(testsAs.tests.length>0) {
+    markdown += `\n
+\n
+## Tests\n
+\n
+${testsAs.tests}`;
   };
 
   console.log(markdown);
+  return markdown;
 }
 
 module.exports = generateMarkdown;
