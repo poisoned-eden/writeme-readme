@@ -11,7 +11,10 @@ function print(something) {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile() {
+    fs.writeFile('README.md', 'something something soommmmmeeethhhiiinnnggggggg', (error, data) =>
+    error ? console.error(error) : console.log(data));
+};
 
 // TODO: Create a function to initialize app
 async function init() {
@@ -46,4 +49,5 @@ async function init() {
 
 }
 // Function call to initialize app
-init();
+//init();
+writeToFile();
