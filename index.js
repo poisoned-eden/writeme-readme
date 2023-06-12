@@ -3,7 +3,7 @@ const markdownify = require("./utils/generateMarkdown.js");
 const questionnaire = require('./utils/questions.js');
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { start } = require("repl");
+
 
 function print(something) {
     console.log("-------");
@@ -49,9 +49,17 @@ async function init() {
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
 
-    const markdown = markdownify(starterAs, badgesAs, featuresAs, contributeAs, testsAs);
+    var answers = {
+        ...starterAs,
+        ...badgesAs,
+        ...featuresAs,
+        ...contributeAs,
+        ...testsAs
+    };
 
-    writeToFile(starterAs.title, markdown);
+    const markdown = markdownify(answers);
+
+    writeToFile(answers.title, markdown);
 
 }
 // Function call to initialize app

@@ -59,71 +59,69 @@ function renderTableOfContents() {
 ## Table of Contents
 `;
   
+
+
   return table;
 };
 
 function renderBadges(badgesAs) {};
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(requiredAs, badgesAs, featuresAs, contributeAs, testsAs) {
+function generateMarkdown(answers) {
 
-  console.log(requiredAs);
-  console.log(badgesAs);
-  console.log(featuresAs);
-  console.log(contributeAs);
-  console.log(testsAs);
+  console.log("ANSWERS");
+  console.log(answers);
 
   var markdown = "";
 
   // add title and description to markdown
-  markdown += `# ${requiredAs.title}\n 
+  markdown += `# ${answers.title}\n 
 \n
 ## Description\n
 \n
-${requiredAs.description}`
+${answers.description}`
 
   // add table of contents  
-  if(requiredAs.optionalSections.includes("Table of Contents")) {
+  if(answers.optionalSections.includes("Table of Contents")) {
     markdown += renderTableOfContents();
   };  
 
   // add other required information
   markdown += `\n\n
 ## Installation\n\n
-${requiredAs.installation}\n\n
+${answers.installation}\n\n
 ## Usage\n\n
-${requiredAs.usage}
-${renderLicenseSection(requiredAs.licence)}\n\n
+${answers.usage}
+${renderLicenseSection(answers.licence)}\n\n
 ## Credits\n\n
-${requiredAs.credits}`;
+${answers.credits}`;
 
-  // add optional fields to markdown
-  if(badgesAs.badges.length>0) {
-    markdown += badgesAs.badges + "\n\n";
-  };
+  if(answers.optionalSections.includes("Badges")) {
+    markdown += renderBadges();
+  };  
 
-  if(featuresAs.features.length>0) {
+  if(answers.optionalSections.includes("Features")) {
     markdown += `\n
 \n
 ## Features\n
 \n
-${featuresAs.features}`; 
+${answers.features}`; 
   };
 
-  if(contributeAs.contribute.length>0) {
+  if(answers.optionalSections.includes("How to Contribute")) {
     markdown += `\n
 \n
 ## Contributions\n
 \n
-${contributeAs.contribute}`;
+${answers.contribute}`;
   };
 
-  if(testsAs.tests.length>0) {
+  if(answers.optionalSections.includes("Tests")) {
     markdown += `\n
 \n
 ## Tests\n
 \n
-${testsAs.tests}`;
+${answers.tests}`;
   };
 
   console.log(markdown);
