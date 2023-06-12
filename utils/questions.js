@@ -20,7 +20,7 @@ const starterQs = [
         message: 'Provide instructions and examples for use.',
     },
     {
-        type: 'input',
+        type: 'editor',
         name: 'credits',
         message: 'List your collaborators',
     },
@@ -49,7 +49,7 @@ const badgesQs = [
 
 const featuresQ = [
     {
-        type: 'input',
+        type: 'editor',
         name: 'features',
         message: 'Please describe the features of your project.',
     }

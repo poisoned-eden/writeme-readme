@@ -45,7 +45,6 @@ function renderLicenseSection(licence) {
   var licenceSection = `\n
 \n
 ## Licence\n
-\n
 ${renderLicenseBadge(licence)}\n
 ${renderLicenseLink(licence)}`
 
@@ -99,7 +98,9 @@ function renderTableOfContents(answers) {
   return table;
 };
 
-function renderBadges(badgesAs) {};
+function renderBadges(answers) {
+  
+};
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
