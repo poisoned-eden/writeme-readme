@@ -99,7 +99,19 @@ function renderTableOfContents(answers) {
 };
 
 function renderBadges(answers) {
+  var { user, repo } = answers;
   
+  var badges = `\n
+\n
+## Badges\n
+\n
+![GitHub language count](https://img.shields.io/github/languages/count/${user}/${repo})\n
+![GitHub top language](https://img.shields.io/github/languages/top/${user}/${repo})\n
+![GitHub Repo stars](https://img.shields.io/github/stars/${user}/${repo}?style=social)\n
+![GitHub watchers](https://img.shields.io/github/watchers/${user}/${repo}?style=social)\n
+![GitHub followers](https://img.shields.io/github/followers/${user}?style=social)\n`
+  
+  return badges;
 };
 
 // TODO: Create a function to generate markdown for README
@@ -133,7 +145,7 @@ ${renderLicenseSection(answers.licence)}\n\n
 ${answers.credits}`;
 
   if(answers.optionalSections.includes("Badges")) {
-    markdown += renderBadges();
+    markdown += renderBadges(answers);
   };  
 
   if(answers.optionalSections.includes("Features")) {

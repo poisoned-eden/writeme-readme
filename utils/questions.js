@@ -39,12 +39,22 @@ const starterQs = [
 ]
 
 const badgesQs = [
+    // {
+    //     type: 'checkbox',
+    //     name: 'badges',
+    //     message: 'Which badges would you like to add to the ReadMe?',
+    //     choices: ["HTML", "JavaScript", "CSS", "Profile Badge", "Watch counter"],
+    // },
     {
-        type: 'checkbox',
-        name: 'badges',
-        message: 'Which badges would you like to add to the ReadMe?',
-        choices: ["HTML", "JavaScript", "CSS", "Profile Badge", "Watch counter"],
-    }
+        type: 'input',
+        name: 'user',
+        message: 'In order to render badges, please enter your github username.'
+    },
+    {
+        type: 'input',
+        name: 'repo',
+        message: 'In order to render badges, please enter the project repo name',
+    },
 ] 
 
 const featuresQ = [
