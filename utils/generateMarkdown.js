@@ -43,7 +43,6 @@ function renderLicenseLink(licence) {
 // If there is no license, return an empty string
 function renderLicenseSection(licence) {
   var licenceSection = `\n
-\n
 ## Licence\n
 ${renderLicenseBadge(licence)}\n
 ${renderLicenseLink(licence)}`
@@ -80,7 +79,7 @@ function renderTableOfContents(answers) {
           break;
         case "optionalSections":
           break;
-        case "badges":
+        case "repo": 
           table += `\n- [Badges](#Badges)`;
           break;
         case "features":
@@ -89,8 +88,11 @@ function renderTableOfContents(answers) {
         case "contribute":
           table += `\n- [Contributions](#Contributions)`;
           break;
-        case "Tests":
+        case "tests":
           table += `\n- [Tests](#Tests)`;
+          break;
+        case "email":
+          table += `\n- [Questions](#Questions)`;
           break;
       }
   });
@@ -104,7 +106,6 @@ function renderBadges(answers) {
   var badges = `\n
 \n
 ## Badges\n
-\n
 ![GitHub language count](https://img.shields.io/github/languages/count/${user}/${repo})\n
 ![GitHub top language](https://img.shields.io/github/languages/top/${user}/${repo})\n
 ![GitHub Repo stars](https://img.shields.io/github/stars/${user}/${repo}?style=social)\n
@@ -113,6 +114,12 @@ function renderBadges(answers) {
   
   return badges;
 };
+
+function renderQuestions(answers) {
+  return `\n\n## Questions\nGithub profile: [${answers.user}]
+  [${answers.email}](${answers.email})\n${answers.reachMe}`
+};
+
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
@@ -126,7 +133,6 @@ function generateMarkdown(answers) {
   markdown += `# ${answers.title}\n 
 \n
 ## Description\n
-\n
 ${answers.description}`
 
   // add table of contents  
@@ -136,12 +142,12 @@ ${answers.description}`
 
   // add other required information
   markdown += `\n\n
-## Installation\n\n
+## Installation\n
 ${answers.installation}\n\n
-## Usage\n\n
+## Usage\n
 ${answers.usage}
 ${renderLicenseSection(answers.licence)}\n\n
-## Credits\n\n
+## Credits\n
 ${answers.credits}`;
 
   if(answers.optionalSections.includes("Badges")) {
@@ -152,7 +158,6 @@ ${answers.credits}`;
     markdown += `\n
 \n
 ## Features\n
-\n
 ${answers.features}`; 
   };
 
@@ -160,7 +165,6 @@ ${answers.features}`;
     markdown += `\n
 \n
 ## Contributions\n
-\n
 ${answers.contribute}`;
   };
 
@@ -168,8 +172,10 @@ ${answers.contribute}`;
     markdown += `\n
 \n
 ## Tests\n
-\n
-${answers.tests}`;
+${answers.tests}`
+
+  if(answers.optionalSections.includes("Questions")) {
+    markdown += renderQuestions(answers);
   };
 
   console.log(markdown);

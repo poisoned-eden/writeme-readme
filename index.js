@@ -48,13 +48,20 @@ async function init() {
         print("Tests");
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
+    
+    var questionsAs = {};
+    if(starterAs.optionalSections.includes("Questions")) {
+        print("Tests");
+        questionsAs = await inquirer.prompt(questionnaire.questionsQs);
+    };
 
     var answers = {
         ...starterAs,
         ...badgesAs,
         ...featuresAs,
         ...contributeAs,
-        ...testsAs
+        ...testsAs,
+        ...questionsAs
     };
 
     const markdown = markdownify(answers);
