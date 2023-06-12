@@ -53,84 +53,110 @@ ${renderLicenseLink(licence)}`
 
 };
 
-function renderTableOfContents() {
+function renderTableOfContents(answers) {
+  
+  
   var table = `\n
 \n
 ## Table of Contents
 `;
   
+  Object.keys(answers).forEach(section => {
+      switch (section) {
+        case "title":
+          break;
+        case "description":
+          break;
+        case "installation":
+          table += `\n- [Installation](#Installation)`;
+          break;
+        case "usage":
+          table += `\n- [Usage](#Usage)`;
+          break;
+        case "credits":
+          table += `\n- [Credits](#Credits)`;
+          break;
+        case "licence":
+          table += `\n- [Licence](#Licence)`;
+          break;
+        case "optionalSections":
+          break;
+        case "badges":
+          table += `\n- [Badges](#Badges)`;
+          break;
+        case "features":
+          table += `\n- [Features](#Features)`;
+          break;
+        case "contribute":
+          table += `\n- [Contributions](#Contributions)`;
+          break;
+        case "Tests":
+          table += `\n- [Tests](#Tests)`;
+          break;
+      }
+  });
+
   return table;
 };
 
 function renderBadges(badgesAs) {};
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(requiredAs, badgesAs, featuresAs, contributeAs, testsAs) {
+function generateMarkdown(answers) {
 
-  console.log(requiredAs);
-  console.log(badgesAs);
-  console.log(featuresAs);
-  console.log(contributeAs);
-  console.log(testsAs);
+  console.log("ANSWERS");
+  console.log(answers);
 
   var markdown = "";
 
   // add title and description to markdown
-  markdown += `# ${requiredAs.title}\n 
+  markdown += `# ${answers.title}\n 
 \n
 ## Description\n
 \n
-${requiredAs.description}`
+${answers.description}`
 
   // add table of contents  
-  if(requiredAs.optionalSections.includes("Table of Contents")) {
-    markdown += renderTableOfContents();
+  if(answers.optionalSections.includes("Table of Contents")) {
+    markdown += renderTableOfContents(answers);
   };  
-  
-  var licence = renderLicenseSection(requiredAs.licence);
 
   // add other required information
-  markdown += `\n
-\n
-## Installation\n
-\n
-${requiredAs.installation}\n
-\n
-## Usage\n
-\n
-${requiredAs.usage}${licence}\n
-\n
-## Credits\n
-\n
-${requiredAs.credits}`;
+  markdown += `\n\n
+## Installation\n\n
+${answers.installation}\n\n
+## Usage\n\n
+${answers.usage}
+${renderLicenseSection(answers.licence)}\n\n
+## Credits\n\n
+${answers.credits}`;
 
-  // add optional fields to markdown
-  if(badgesAs.badges.length>0) {
-    markdown += badgesAs.badges + "\n\n";
-  };
+  if(answers.optionalSections.includes("Badges")) {
+    markdown += renderBadges();
+  };  
 
-  if(featuresAs.features.length>0) {
+  if(answers.optionalSections.includes("Features")) {
     markdown += `\n
 \n
 ## Features\n
 \n
-${featuresAs.features}`; 
+${answers.features}`; 
   };
 
-  if(contributeAs.contribute.length>0) {
+  if(answers.optionalSections.includes("How to Contribute")) {
     markdown += `\n
 \n
 ## Contributions\n
 \n
-${contributeAs.contribute}`;
+${answers.contribute}`;
   };
 
-  if(testsAs.tests.length>0) {
+  if(answers.optionalSections.includes("Tests")) {
     markdown += `\n
 \n
 ## Tests\n
 \n
-${testsAs.tests}`;
+${answers.tests}`;
   };
 
   console.log(markdown);
