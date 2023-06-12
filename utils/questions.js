@@ -6,6 +6,11 @@ const starterQs = [
     },
     {
         type: 'input',
+        name: 'user',
+        message: 'Please enter your github username.'
+    },
+    {
+        type: 'input',
         name: 'description',
         message: 'Please enter a short description explaining the what, why and how of the project.'
     },
@@ -34,7 +39,7 @@ const starterQs = [
         type: 'checkbox',
         name: 'optionalSections',
         message: 'Which options would you like to include in the ReadMe?',
-        choices: ["Table of Contents","Badges", "Features", "How to Contribute", "Tests"],
+        choices: ["Table of Contents","Badges", "Features", "How to Contribute", "Tests", "Questions"],
     }
 ]
 
@@ -47,13 +52,8 @@ const badgesQs = [
     // },
     {
         type: 'input',
-        name: 'user',
-        message: 'In order to render badges, please enter your github username.'
-    },
-    {
-        type: 'input',
         name: 'repo',
-        message: 'In order to render badges, please enter the project repo name',
+        message: 'Badges: please enter the project repo name so the badges can be displayed',
     },
 ] 
 
@@ -78,8 +78,20 @@ const testsQs = [
         name: 'tests',
         message: 'Tests: Provide examples on how to run test for your application',
     }
-] 
+]
+const questionsQs = [
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Questions: Please enter your email address.',
+    },
+    {
+        type: 'input',
+        name: 'reachMe',
+        message: 'Questions: Enter instructions on how to reach you with additional questions.',
+    }
+]
 
 
 
-module.exports = {starterQs, badgesQs, featuresQ, contributeQs, testsQs};
+module.exports = {starterQs, badgesQs, featuresQ, contributeQs, testsQs, questionsQs};

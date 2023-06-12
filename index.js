@@ -20,6 +20,12 @@ function writeToFile(title, markdown) {
     error ? console.error(error) : console.log(data));
 };
 
+function storeAnswers(title, answers) {
+    let stringAnswers = JSON.stringify(answers);
+    fs.writeFile(`./output/${title}/answers.js`, stringAnswers, (error, data) =>
+    error ? console.error(error) : console.log(data));
+}
+
 // TODO: Create a function to initialize app
 async function init() {
        
@@ -48,18 +54,25 @@ async function init() {
         print("Tests");
         testsAs = await inquirer.prompt(questionnaire.testsQs);
     };
+    
+    var questionsAs = {};
+    if(starterAs.optionalSections.includes("Questions")) {
+        print("Tests");
+        questionsAs = await inquirer.prompt(questionnaire.questionsQs);
+    };
 
     var answers = {
         ...starterAs,
         ...badgesAs,
         ...featuresAs,
         ...contributeAs,
-        ...testsAs
+        ...testsAs,
+        ...questionsAs
     };
 
     const markdown = markdownify(answers);
-
     writeToFile(answers.title, markdown);
+    storeAnswers(answers.title, answers);
 
 }
 // Function call to initialize app
