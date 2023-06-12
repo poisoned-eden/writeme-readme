@@ -116,8 +116,9 @@ function renderBadges(answers) {
 };
 
 function renderQuestions(answers) {
-  return `\n\n## Questions\nGithub profile: [${answers.user}]
-  [${answers.email}](${answers.email})\n${answers.reachMe}`
+  return `\n\n## Questions\nGithub profile: [${answers.user}](${answers.user})\n
+  [${answers.email}](${answers.email})\n
+  ${answers.reachMe}`
 };
 
 
@@ -173,6 +174,7 @@ ${answers.contribute}`;
 \n
 ## Tests\n
 ${answers.tests}`
+  };
 
   if(answers.optionalSections.includes("Questions")) {
     markdown += renderQuestions(answers);

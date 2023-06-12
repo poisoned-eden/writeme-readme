@@ -20,6 +20,12 @@ function writeToFile(title, markdown) {
     error ? console.error(error) : console.log(data));
 };
 
+function storeAnswers(title, answers) {
+    let stringAnswers = JSON.stringify(answers);
+    fs.writeFile(`./output/${title}/answers.js`, stringAnswers, (error, data) =>
+    error ? console.error(error) : console.log(data));
+}
+
 // TODO: Create a function to initialize app
 async function init() {
        
@@ -65,8 +71,8 @@ async function init() {
     };
 
     const markdown = markdownify(answers);
-
     writeToFile(answers.title, markdown);
+    storeAnswers(answers.title, answers);
 
 }
 // Function call to initialize app
