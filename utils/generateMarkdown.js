@@ -53,13 +53,48 @@ ${renderLicenseLink(licence)}`
 
 };
 
-function renderTableOfContents() {
+function renderTableOfContents(answers) {
+  
+  
   var table = `\n
 \n
 ## Table of Contents
 `;
   
-
+  Object.keys(answers).forEach(section => {
+      switch (section) {
+        case "title":
+          break;
+        case "description":
+          break;
+        case "installation":
+          table += `\n- [Installation](#Installation)`;
+          break;
+        case "usage":
+          table += `\n- [Usage](#Usage)`;
+          break;
+        case "credits":
+          table += `\n- [Credits](#Credits)`;
+          break;
+        case "licence":
+          table += `\n- [Licence](#Licence)`;
+          break;
+        case "optionalSections":
+          break;
+        case "badges":
+          table += `\n- [Badges](#Badges)`;
+          break;
+        case "features":
+          table += `\n- [Features](#Features)`;
+          break;
+        case "contribute":
+          table += `\n- [Contributions](#Contributions)`;
+          break;
+        case "Tests":
+          table += `\n- [Tests](#Tests)`;
+          break;
+      }
+  });
 
   return table;
 };
@@ -83,7 +118,7 @@ ${answers.description}`
 
   // add table of contents  
   if(answers.optionalSections.includes("Table of Contents")) {
-    markdown += renderTableOfContents();
+    markdown += renderTableOfContents(answers);
   };  
 
   // add other required information
