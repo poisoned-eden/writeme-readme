@@ -15,12 +15,12 @@ const starterQs = [
         message: 'Please enter a short description explaining the what, why and how of the project.'
     },
     {
-        type: 'input',
+        type: 'editor',
         name: 'installation',
         message: 'What are the steps required to install your project?',
     },
     {
-        type: 'input',
+        type: 'editor',
         name: 'usage',
         message: 'Provide instructions and examples for use.',
     },
